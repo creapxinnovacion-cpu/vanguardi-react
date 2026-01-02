@@ -14,9 +14,9 @@ const dropdowns = {
     ["/Alquiler/Apartamentos", "Apartamentos"],
   ],
   Contactos: [
-    ["/Contactos/WhatsApp", "WhatsApp"],
+    ["https://wa.me/50377562416?text=Hola%20quiero%20información", "WhatsApp"],
     ["https://www.facebook.com", "Facebook"],
-    ["/Contactos/Instagram", "Instagram"],
+    ["https://www.instagram.com", "Instagram"],
   ],
 };
 
