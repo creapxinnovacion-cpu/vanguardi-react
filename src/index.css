@@ -1,0 +1,135 @@
+body{
+    background-image: url('/img/fondo.png');
+}
+/* =========================
+   NAVBAR BASE
+========================= */
+nav {
+  backdrop-filter: blur(6px);
+}
+
+/* =========================
+   LINKS PRINCIPALES
+========================= */
+nav ul > li > a,
+nav ul > li > div {
+  position: relative;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.35s ease;
+}
+
+/* Línea animada inferior */
+nav ul > li > a::after,
+nav ul > li > div::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    #38bdf8,
+    #0ea5e9
+  );
+  transition: all 0.35s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Hover principal */
+nav ul > li:hover > a,
+nav ul > li:hover > div {
+  color: #60a5fa;
+}
+
+nav ul > li:hover > a::after,
+nav ul > li:hover > div::after {
+  width: 100%;
+}
+
+/* =========================
+   DROPDOWN CON ANIMACIÓN
+========================= */
+nav ul li .group-hover\\:block {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  pointer-events: none;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+/* Activación hover */
+nav ul li.group:hover .group-hover\\:block {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* =========================
+   CAJA DROPDOWN
+========================= */
+nav ul li .group-hover\\:block {
+  background: linear-gradient(
+    180deg,
+    #ffffff,
+    #f8fafc
+  );
+  border-radius: 14px;
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.18);
+  padding: 6px 0;
+}
+
+/* =========================
+   ITEMS DROPDOWN
+========================= */
+nav ul li .group-hover\\:block a {
+  position: relative;
+  font-weight: 500;
+  transition:
+    background 0.25s ease,
+    padding-left 0.25s ease,
+    color 0.25s ease;
+}
+
+/* Barra lateral animada */
+nav ul li .group-hover\\:block a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 60%;
+  background: linear-gradient(
+    180deg,
+    #3b82f6,
+    #0ea5e9
+  );
+  transform: translateY(-50%);
+  transition: width 0.25s ease;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Hover item */
+nav ul li .group-hover\\:block a:hover {
+  background: #f1f5f9;
+  padding-left: 22px;
+  color: #0f172a;
+}
+
+nav ul li .group-hover\\:block a:hover::before {
+  width: 4px;
+}
+
+/* =========================
+   GLOW SUAVE (DESKTOP)
+========================= */
+@media (hover: hover) {
+  nav ul > li:hover {
+    filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.35));
+  }
+}
