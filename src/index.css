@@ -1,5 +1,5 @@
 body{
-    background-image: url('/img/fondo.png');
+    background-image: url('/img/fondo.avif');
 }
 /* =========================
    NAVBAR BASE
@@ -131,5 +131,163 @@ nav ul li .group-hover\\:block a:hover::before {
 @media (hover: hover) {
   nav ul > li:hover {
     filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.35));
+  }
+}
+
+/**/
+.empresa-title {
+  /* Mínimo: 3rem, Ideal: 8vw, Máximo: 6rem */
+font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  /* Color fallback (CLAVE) */
+  color: #c6c30b;
+  /* Estabilidad GSAP */
+  will-change: transform;
+  transform: translateZ(0);
+
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  margin-bottom: 10px;
+}
+
+.empresa-subtitle {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ecf0f1;
+  margin-bottom: 14px;
+}
+
+.empresa-slogan {
+  font-size: 1.3rem;
+  max-width: 420px;
+  line-height: 1.6;
+  color: #eaf6ff;
+  margin: 0 auto;
+}
+/* img DE home*/
+/* =========================
+   SECCIONES BASE
+========================= */
+section.relative {
+  transition: transform 0.4s ease;
+}
+
+section.relative:hover {
+  transform: translateY(-6px);
+}
+
+/* =========================
+   IMÁGENES (HOVER PRO)
+========================= */
+section .seccionimg {
+  transition: transform 0.5s ease, box-shadow 0.5s ease, filter 0.5s ease;
+}
+
+section .seccionimg:hover {
+  transform: scale(1.06) translateY(-4px);
+  filter: brightness(1.08) saturate(1.15);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================
+   TITULOS GENERALES
+========================= */
+section h1,
+section h2 {
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.45s ease;
+}
+
+/* =========================
+   SERVICIOS (TÍTULO BLANCO PRO)
+========================= */
+section:nth-of-type(2) h2 {
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================
+   MEDICIONES – VERDE PREMIUM
+========================= */
+section:nth-of-type(3) h1 {
+  background: linear-gradient(
+    90deg,
+    #232222,
+    #2ecc71,
+    #a8ff78
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.65);
+}
+
+/* =========================
+   HERENCIAS – DORADO LEGAL
+========================= */
+section:nth-of-type(4) h2 {
+  background: linear-gradient(
+    90deg,
+    #573939,
+    #ca8310,
+    #e6c75c
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.65);
+}
+
+/* =========================
+   REMODELACIONES – TURQUESA MODERNO
+========================= */
+section:nth-of-type(5) h2 {
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #1abc9c,
+    #16a085
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.55);
+}
+
+/* =========================
+   EFECTO HOVER EN TITULOS
+========================= */
+section h1:hover,
+section h2:hover {
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  filter: brightness(1.1);
+}
+
+/* =========================
+   TEXTO DESCRIPTIVO
+========================= */
+section p {
+  color: #eaf6ff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  transition: color 0.3s ease;
+}
+
+section:hover p {
+  color: #ffffff;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  section h1,
+  section h2 {
+    text-align: center;
+  }
+
+  section img:hover {
+    transform: scale(1.03);
   }
 }
