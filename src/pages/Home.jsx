@@ -1,6 +1,48 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+
 function Home() {
+  //cosntante de la agente de vanguardia
+  const [openChat, setOpenChat] = useState(false);
+  const [mensaje, setMensaje] = useState("");
+  const [mensajes, setMensajes] = useState([
+    { role: "bot", text: "Hola 👋 soy Vanguardia-IA, ¿en qué puedo ayudarte?" },
+  ]);
+  const [loading, setLoading] = useState(false);
+
+  const enviarMensaje = async () => {
+    if (!mensaje.trim()) return;
+
+    const nuevoMensaje = { role: "user", text: mensaje };
+    setMensajes((prev) => [...prev, nuevoMensaje]);
+    setMensaje("");
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/chat/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          mensaje: mensaje,
+          // luego puedes enviar tipo / ubicacion
+        }),
+      });
+
+      const data = await response.json();
+
+      setMensajes((prev) => [...prev, { role: "bot", text: data.respuesta }]);
+    } catch (error) {
+      setMensajes((prev) => [
+        ...prev,
+        { role: "bot", text: "⚠️ Error al conectar con el servidor." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const vanguardiaHeroRef = useRef(null);
   const vanguardiaFooterRef = useRef(null);
   const logoRef = useRef(null);
@@ -220,6 +262,64 @@ function Home() {
           </div>
         </div>
       </section>
+      {/* =========================
+    CHAT VANGUARDIA-IA
+========================= */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {!openChat && (
+          <button
+            onClick={() => setOpenChat(true)}
+            className="bg-blue-600 text-white px-5 py-3 rounded-full shadow-xl hover:bg-blue-700"
+          >
+            💬 Vanguardia-IA
+          </button>
+        )}
+
+        {openChat && (
+          <div className="w-80 h-96 bg-white rounded-xl shadow-2xl flex flex-col overflow-hidden">
+            {/* HEADER */}
+            <div className="bg-blue-700 text-white px-4 py-3 flex justify-between items-center">
+              <span className="font-bold">Vanguardia-IA</span>
+              <button onClick={() => setOpenChat(false)}>✕</button>
+            </div>
+
+            {/* MENSAJES */}
+            <div className="flex-1 p-3 overflow-y-auto space-y-2 text-sm">
+              {mensajes.map((m, i) => (
+                <div
+                  key={i}
+                  className={`p-2 rounded-lg max-w-[85%] ${
+                    m.role === "user"
+                      ? "bg-blue-100 ml-auto text-right"
+                      : "bg-gray-100"
+                  }`}
+                >
+                  {m.text}
+                </div>
+              ))}
+              {loading && <div className="text-gray-400">Escribiendo...</div>}
+            </div>
+
+            {/* INPUT */}
+            <div className="p-2 border-t flex gap-2">
+              <input
+                type="text"
+                value={mensaje}
+                onChange={(e) => setMensaje(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && enviarMensaje()}
+                placeholder="Escribe tu mensaje..."
+                className="flex-1 border rounded-lg px-3 py-2 text-sm"
+              />
+              <button
+                onClick={enviarMensaje}
+                className="bg-blue-600 text-white px-3 rounded-lg"
+              >
+                ➤
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </main>
   );
 }

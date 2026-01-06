@@ -15,7 +15,7 @@ const dropdowns = {
   ],
   Contactos: [
     ["https://wa.me/50377562416?text=Hola%20quiero%20información", "WhatsApp"],
-    ["https://www.facebook.com", "Facebook"],
+    ["https://www.facebook.com/share/1G5o1BVdRK/?mibextid=wwXIfr", "Facebook"],
     ["https://www.instagram.com", "Instagram"],
   ],
 };
